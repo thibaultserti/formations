@@ -1,0 +1,8 @@
+namePrefix: production-
+commonLabels:
+  variant: production
+resources:
+- ../../base
+patches:
+- path: deployment.yaml
+- path: configMap.yaml

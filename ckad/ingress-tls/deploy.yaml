@@ -1,0 +1,98 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: asia
+  name: asia
+  namespace: alderaan
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: asia
+  template:
+    metadata:
+      labels:
+        app: asia
+    spec:
+      containers:
+      - image: nginx:1.21.5-alpine
+        name: c
+        resources: {}
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: html
+        - mountPath: /etc/nginx
+          name: nginx-conf
+          readOnly: true
+      initContainers:
+      - command:
+        - sh
+        - -c
+        - echo 'hello, you reached ASIA' > /html/index.html
+        image: busybox:1.28
+        name: init-container
+        resources: {}
+        volumeMounts:
+        - mountPath: /html
+          name: html
+      volumes:
+      - emptyDir: {}
+        name: html
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: nginx.conf
+            path: nginx.conf
+          name: nginx-conf
+        name: nginx-conf
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: europe
+  name: europe
+  namespace: alderaan
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: europe
+  template:
+    metadata:
+      labels:
+        app: europe
+    spec:
+      containers:
+      - image: nginx:1.21.5-alpine
+        name: c
+        resources: {}
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: html
+        - mountPath: /etc/nginx
+          name: nginx-conf
+          readOnly: true
+      initContainers:
+      - command:
+        - sh
+        - -c
+        - echo 'hello, you reached EUROPE' > /html/index.html
+        image: busybox:1.28
+        name: init-container
+        resources: {}
+        volumeMounts:
+        - mountPath: /html
+          name: html
+      volumes:
+      - emptyDir: {}
+        name: html
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: nginx.conf
+            path: nginx.conf
+          name: nginx-conf
+        name: nginx-conf

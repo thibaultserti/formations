@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    id: fail-3
+  name: nginx
+  namespace: dagobah
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      id: fail-3
+  template:
+    metadata:
+      labels:
+        id: fail-3
+    spec:
+      containers:
+      - image: nginx:1.17
+        name: nginx
+        resources:
+          limits:
+            memory: 100
+          requests:
+            memory: 100

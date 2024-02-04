@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secret-handler
+  namespace: kamino
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      id: secret-handler
+  template:
+    metadata:
+      labels:
+        id: secret-handler
+    spec:
+      volumes:
+      - name: web-content
+        configMap:
+          name: configmap-web-html
+      containers:
+      - image: nginx
+        name: nginx
+        volumeMounts:
+        - name: web-content
+          mountPath: /usr/share/nginx/html
+        ports:
+        - containerPort: 80

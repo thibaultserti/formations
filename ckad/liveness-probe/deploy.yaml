@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-23-api
+  namespace: kamino
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: project-23-api
+  template:
+    metadata:
+      labels:
+        app: project-23-api
+    spec:
+      volumes:
+      - name: cache-volume1
+        emptyDir: {}
+      - name: cache-volume2
+        emptyDir: {}
+      - name: cache-volume3
+        emptyDir: {}
+      containers:
+      - image: httpd:2.4-alpine
+        name: httpd
+        volumeMounts:
+        - mountPath: /cache1
+          name: cache-volume1
+        - mountPath: /cache2
+          name: cache-volume2
+        - mountPath: /cache3
+          name: cache-volume3

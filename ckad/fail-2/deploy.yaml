@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    id: manager-api-deployment
+  name: manager-api-deployment
+  namespace: dagobah
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      id: manager-api-pod
+  template:
+    metadata:
+      labels:
+        id: manager-api-pod
+    spec:
+      containers:
+      - image: nginx:1.23
+        name: nginx
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: manager-api-svc
+  name: manager-api-svc
+  namespace: dagobah
+spec:
+  ports:
+  - name: 4444-80
+    port: 4444
+    protocol: TCP
+    targetPort: 80
+  selector:
+    id: manager-api-deployment
