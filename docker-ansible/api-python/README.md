@@ -26,5 +26,5 @@ Les variables d'environnements suivantes sont utilisées pour communiquer avec l
 ## Run
 
 ```bash
-python3 main.py
+uvicorn main:app --host 0.0.0.0
 ```
