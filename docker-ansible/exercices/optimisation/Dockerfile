@@ -1,4 +1,4 @@
-FROM gcr.io/distroless/python3-debian12
+FROM python:3.12
 COPY main.py .
 
-ENTRYPOINT ["python3", "main.py"]doe
+ENTRYPOINT ["python3", "main.py"]
