@@ -30,14 +30,15 @@ def get_db_connection():
 
 try:
     connection = get_db_connection()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("CREATE TABLE IF NOT EXISTS items (name VARCHAR(255) NOT NULL, description TEXT);")
+            result = cursor.fetchone()
+        finally:
+            connection.close()
 except pymysql.err.OperationalError as e:
     logging.error(f"Cannot connect to database: {e}")
-try:
-    with connection.cursor() as cursor:
-        cursor.execute("CREATE TABLE IF NOT EXISTS items (name VARCHAR(255) NOT NULL, description TEXT);")
-        result = cursor.fetchone()
-finally:
-    connection.close()
+
 
 # Endpoint pour lire la version de MySQL
 @app.get("/version")
