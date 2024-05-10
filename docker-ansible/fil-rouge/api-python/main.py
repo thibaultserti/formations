@@ -39,6 +39,9 @@ try:
 except pymysql.err.OperationalError as e:
     logging.error(f"Cannot connect to database: {e}")
 
+@app.get("/")
+async def health():
+    return {"Status": "OK"}
 
 # Endpoint pour lire la version de MySQL
 @app.get("/version")
