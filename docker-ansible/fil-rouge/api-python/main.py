@@ -34,8 +34,8 @@ try:
         with connection.cursor() as cursor:
             cursor.execute("CREATE TABLE IF NOT EXISTS items (name VARCHAR(255) NOT NULL, description TEXT);")
             result = cursor.fetchone()
-        finally:
-            connection.close()
+    finally:
+        connection.close()
 except pymysql.err.OperationalError as e:
     logging.error(f"Cannot connect to database: {e}")
 
