@@ -2,6 +2,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import os
+import logging
 import pymysql
 
 app = FastAPI()
@@ -27,8 +28,10 @@ def get_db_connection():
 
 # Create table items
 
-
-connection = get_db_connection()
+try:
+    connection = get_db_connection()
+except pymysql.err.OperationalError as e:
+    logging.error(f"Cannot connect to database: {e}")
 try:
     with connection.cursor() as cursor:
         cursor.execute("CREATE TABLE IF NOT EXISTS items (name VARCHAR(255) NOT NULL, description TEXT);")
