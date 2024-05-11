@@ -1,0 +1,29 @@
+## Création d'un certificat
+## export FQDN=mon.super.full.qualified.domain.name
+## openssl req -x509 -nodes -newkey rsa:2048 -keyout $FQDN.key -out $FQDN.crt -days 365 -subj "/CN=$FQDN"
+
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name {{ server_name }};
+
+    # Redirection HTTP vers HTTPS
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name {{ server_name }};
+
+    ssl_certificate /etc/nginx/ssl/{{ server_name }}.crt;
+    ssl_certificate_key /etc/nginx/ssl/{{ server_name }}.key;
+
+    location / {
+        root {{ nginx_root }};
+        index index.html index.htm index.nginx-debian.html;
+    }
+}

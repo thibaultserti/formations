@@ -1,0 +1,14 @@
+---
+- name: Installation de Nginx
+  hosts: # TO FILL
+  become: # TO FILL
+  tasks:
+    - name: Mise à jour du cache des paquets
+    # TO FILL
+
+    - name: Installation de Nginx
+    # TO FILL
+
+
+    - name: Démarrage du service Nginx
+    # TO FILL
