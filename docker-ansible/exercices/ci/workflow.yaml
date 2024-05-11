@@ -8,9 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      packages: write
     steps: []
       # - name: Checkout repository
       #   uses: actions/checkout@v4
