@@ -9,12 +9,10 @@ profile docker-container flags=(audit,complain,attach_disconnected,mediate_delet
 
   deny network packet,
 
-  /** rwmlk,
   umount,
 
   deny /bin/** wl,
   deny /boot/** wl,
-  deny /dev/** wl,
   deny /etc/** wl,
   deny /home/** wl,
   deny /lib/** wl,
