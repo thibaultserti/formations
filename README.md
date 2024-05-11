@@ -28,3 +28,15 @@ To be done
 
 
 ## Docker + Ansible
+- Dockerfile
+- Opimitization
+- Security with Apparmor
+- Networking
+- CMD vs ENTRYPOINT
+- docker-compose
+- Multi stages build
+- Volumes
+- Configurations
+- CI/CD with Github Actions
+- Ansible tasks, roles, playbooks, inventory
+- Containers orchestration
