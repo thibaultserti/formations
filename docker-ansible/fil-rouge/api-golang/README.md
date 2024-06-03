@@ -6,7 +6,8 @@ Cette API utilise REDIS 6.
 ## Build
 
 ```bash
-go build main.go
+go mod download
+CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 ```
 
 ## Configuration
@@ -20,5 +21,5 @@ La variable d'environnement suivante est utilisée pour communiquer avec le cont
 ## Run
 
 ```bash
-./api-golang
+./app
 ```
