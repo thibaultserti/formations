@@ -2,15 +2,15 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: endor
-labels:
-  important: true
+  labels:
+    important: "true"
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: hoth
-labels:
-  important: true
+  labels:
+    important: "true"
 ---
 apiVersion: v1
 kind: Namespace
@@ -26,15 +26,15 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: kamino
-labels:
-  protected: true
+  labels:
+    protected: "true"
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: tatooine
-labels:
-  important: true
+  labels:
+    important: "true"
 ---
 apiVersion: v1
 kind: Namespace
@@ -45,8 +45,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: alderaan
-labels:
-  important: true
+  labels:
+    important: "true"
 ---
 apiVersion: v1
 kind: Namespace
