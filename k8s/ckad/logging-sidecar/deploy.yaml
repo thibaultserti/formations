@@ -30,3 +30,9 @@ spec:
         volumeMounts:
         - name: logs
           mountPath: /var/log/cleaner
+      - name: cleaner-read
+        image: busybox:1.31.0
+        args: ['sh', '-c', 'tail -f /var/log/cleaner/cleaner.log']
+        volumeMounts:
+        - name: logs
+          mountPath: /var/log/cleaner
