@@ -20,4 +20,4 @@ spec:
         name: nginx
         resources:
           limits:
-            memory: 5Mi
+            memory: 100
