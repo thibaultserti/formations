@@ -1,4 +1,4 @@
-# Repository with various exercices for devops trainingg
+# Repository with various exercises for devops training
 
 
 # Kubernetes
