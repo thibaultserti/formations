@@ -16,16 +16,6 @@ spec:
       volumes:
       - name: web-content
         emptyDir: {}
-      initContainers:
-      - image: busybox:1.31.0
-        name: init-con
-        args:
-          - "/bin/sh"
-          - "-c"
-          - "echo Hello World! > /usr/share/nginx/html/index.html"
-        volumeMounts:
-        - name: web-content
-          mountPath: /usr/share/nginx/html
       containers:
       - image: nginx:1.17.3-alpine
         name: nginx
