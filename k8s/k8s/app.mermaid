@@ -1,0 +1,18 @@
+graph LR
+  subgraph Client
+    Browser[Browser]
+  end
+
+  subgraph Docker_Network["app-network"]
+    FE[(Frontend Vue)]
+    BE[(Backend Python FastAPI)]
+    CR[Cron]
+    PG[(Postgres 16)]
+    RD[(Redis 7)]
+  end
+
+  Browser -->|HTTP :80| FE
+  FE -->|HTTP :8000| BE
+  CR -->|SQL| PG
+  BE -->|SQL| PG
+  BE -->|Cache| RD
